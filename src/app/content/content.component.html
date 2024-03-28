@@ -1,44 +1,105 @@
-<section class="contenido">
-    <div>
-        <h2>Materia: Programación</h2>
-        <h3>Clickeá la catedra a la que quieres inscribirte</h3>
-    </div>
-    <article class="tabla-contenedor">
-        <table>
-            <thead>
-                <tr>
-                    <th>Hs</th>
-                    <th>Lunes</th>
-                    <th>Martes</th>
-                    <th>Miércoles</th>
-                    <th>Jueves</th>
-                    <th>Viernes</th>
-                    <th>Sábado</th>
-                    <th>Domingo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>8 a 12</td>
-                    <td>cat. Marquez</td>
-                    <td></td>
-                    <td>cat. Lopez</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>19 a 23</td>
-                    <td class="catedras">cat. Roque</td>
-                    <td>cat. Perez</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </article>
-</section>
+<div class="flex w-full mt-40">
+    <section class="flex flex-col items-center justify-center w-full p-5">
+        <article>
+            <div class="relative overflow-x-auto border shadow-md border-ablue-border sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 rtl:text-right">
+                    <caption class="p-4 text-lg font-semibold text-left bg-white text-ablue-primary rtl:text-right">
+                        <div class="flex flex-col items-center gap-1">
+                            Materia: Programación Orientada a Objetos I
+                            <!-- <p class="mt-1 text-sm font-normal text-gray-500">
+                                f
+                            </p> -->
+                            <div class="inline-flex rounded-md" role="group">
+                                <button type="button" class="px-4 py-1 text-sm text-gray-500 bg-transparent border border-ablue-border rounded-s-lg hover:bg-ablue-tertiary hover:text-ablue-secondary focus:z-10 focus:ring-2 focus:ring-sky-500 focus:bg-sky-300 focus:text-white">
+                                1er Exámen
+                                </button>
+                                <button type="button" class="px-4 py-1 text-sm text-gray-500 bg-transparent border-t border-b border-ablue-border hover:bg-ablue-tertiary hover:text-ablue-secondary focus:z-10 focus:ring-2 focus:ring-sky-500 focus:bg-sky-300 focus:text-white">
+                                2do Exámen
+                                </button>
+                                <button type="button" class="px-4 py-1 text-sm bg-transparent border border-ablue-border rounded-e-lg text-ablue-secondary focus:z-10 ring-2 ring-sky-500 bg-sky-500/60">
+                                Exámen Final
+                                </button>
+                            </div>                        
+                        </div>
+                    </caption>
+                    <thead class="text-xs uppercase bg-ablue-tertiary text-ablue-primary">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 border-r border-y border-ablue-border">
+                                Apellido
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-r border-y border-ablue-border">
+                                Nombre
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-r border-y border-ablue-border">
+                                1er Parcial
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-r border-y border-ablue-border">
+                                2do Parcial
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center border-r border-y border-ablue-border">
+                                Examen Final
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center border-y border-ablue-border">
+                                Acción
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr 
+                            *ngFor="let estudiante of listaDeEstudiantes" 
+                            [ngClass]="{ 
+                                'odd:bg-ablue-tertiary/30': true, 
+                                'even:bg-ablue-tertiary': true,
+                                '!bg-aprevent/50': !estudiante.aprobado,
+                            }"
+                            >
+                            <td class="px-6 py-4 border-r border-ablue-border">
+                                {{ estudiante.apellido }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-ablue-border">
+                                {{ estudiante.nombre }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-ablue-border">
+                                {{ estudiante.parcialUno }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-ablue-border">
+                                {{ estudiante.parcialDos }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-ablue-border">
+                                <div class="flex items-center">
+                                    <button (click)="estudiante.decrement()" class="inline-flex items-center justify-center w-6 h-6 p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full me-3 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
+                                        <span class="sr-only">Quantity button</span>
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                        </svg>
+                                    </button>
+                                    <div>
+                                        <p class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1">
+                                            {{ estudiante.final }}
+                                        </p>
+                                        <!-- <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1" required /> -->
+                                    </div>
+                                    <button (click)="estudiante.increment()" class="inline-flex items-center justify-center w-6 h-6 p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full ms-3 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
+                                        <span class="sr-only">Quantity button</span>
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="px-16 py-4">
+                                <button 
+                                    (click)="estudiante.aprobar()"
+                                    type="button"
+                                    class="text-white bg-ablue-secondary hover:bg-ablue-primary focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2"
+                                    >
+                                    {{ estudiante.aprobado ? 'Promociona' : 'Recursa' }}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+</div>

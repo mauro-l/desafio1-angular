@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  
+  power = true;
+
+  byebye(){
+    this.power = !this.power;
+  }
 
 }

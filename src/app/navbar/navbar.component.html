@@ -1,27 +1,31 @@
-<nav class="contenedor">
-    <section class="navbar">
+<!-- [ngClass]="power ? '!bg-stone-50/5' : '!bg-black/90'"  -->
+<nav class="container">
+    <section 
+        [ngClass]="power ? '!bg-stone-50/5' : '!bg-black'" 
+        class="fixed top-0 left-0 flex items-center justify-between w-full h-16 px-4 transition-colors shadow-md"
+    >
         <article>
-            <p class="">SIU<span style="color:blue; font-weight: bold;">GUARANÍ</span></p>
+            <p class="text-gray-400">SIU<span class="font-bold text-blue-700">GUARANÍ</span></p>
         </article>
-        <article>
-            UNQ,<span>CYT</span>
+        <article class="font-bold text-gray-400">
+            UNQ,<span class="text-gray-400/60">CECYT</span>
         </article>
-        <article class="login">
-            <div>
+        <article class="flex items-center">
+            <div class="flex items-center justify-center flex-1 mx-1">
                 <span>
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                         <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                     </svg>
                 </span>
-                <p>Usuario</p>
+                <p>Profesor</p>
             </div>
-            <div>
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-power">
+            <button (click)="byebye()">
+                <svg [ngStyle]="{'color': power ? 'black' : 'white'}" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-power">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 6a7.75 7.75 0 1 0 10 0" /><path d="M12 4l0 8" />
                 </svg>
-            </div>
+            </button>
         </article>
     </section>
-    
+    <span *ngIf="!power" class="absolute left-0 right-0 z-10 w-full h-full transition-colors bg-black/95 top-14"></span>
 </nav>
